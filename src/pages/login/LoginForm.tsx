@@ -9,6 +9,7 @@ import { UserIcon } from '@heroicons/react/24/solid';
 import { LockClosedIcon } from '@heroicons/react/24/outline';
 import axios from 'axios';
 
+// LoginForm bileşeni client tarafında çalışmalı, SSR sırasında render edilmemeli
 export default function LoginForm() {
     const [userId, setUserId] = useState('');
     const [password, setPassword] = useState('');
@@ -17,6 +18,7 @@ export default function LoginForm() {
     const [success, setSuccess] = useState(false);
 
     const router = useRouter();
+    // useAuth içindeki server-side kontrol sayesinde artık güvenli
     const { login } = useAuth();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -89,7 +91,7 @@ export default function LoginForm() {
                 />
 
                 <div className="flex justify-start mb-8 mt-6">
-                    <a href="#" className="text-sm text-gray-900 hover:text-gray-600 underline font-bold ml-2">
+                    <a href="#" className="text-sm text-gray-900 hover:text-white underline font-bold ml-2">
                         Forgot Password
                     </a>
                 </div>

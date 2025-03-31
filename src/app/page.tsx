@@ -1,10 +1,16 @@
 'use client';
 
 import React from 'react';
+import dynamic from 'next/dynamic';
 import AuthLayout from '../components/layout/AuthLayout';
 import Logo from '../components/common/Logo';
-import LoginForm from '../pages/login/LoginForm';
 import RegisterOptions from '../components/auth/RegisterOptions';
+
+// LoginForm dinamik olarak yükleniyor, server-side rendering devre dışı
+const LoginForm = dynamic(() => import('../pages/login/LoginForm'), {
+  ssr: false,
+  loading: () => <div className="w-full p-4 text-center">Loading login form...</div>
+});
 
 export default function Home() {
   return (
